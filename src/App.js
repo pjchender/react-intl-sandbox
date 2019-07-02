@@ -1,8 +1,9 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { FormattedMessage } from 'react-intl';
 
-function App() {
+function App({ setLocale }) {
   return (
     <div className="App">
       <header className="App-header">
@@ -10,13 +11,18 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
+        <div>
+          <button onClick={() => setLocale('en')}>英文</button>
+          <button onClick={() => setLocale('zh')}>中文</button>
+          <button onClick={() => setLocale('ja')}>日文</button>
+        </div>
         <a
           className="App-link"
           href="https://reactjs.org"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          <FormattedMessage id="app.learn" values={{ name: 'React' }} />
         </a>
       </header>
     </div>

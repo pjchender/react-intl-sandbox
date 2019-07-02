@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
@@ -9,18 +9,32 @@ import enLocaleData from 'react-intl/locale-data/en.js';
 import zhLocaleData from 'react-intl/locale-data/zh.js';
 import jaLocaleData from 'react-intl/locale-data/ja.js';
 
-addLocaleData([
-  ...zhLocaleData,
-  ...enLocaleData,
-  ...jaLocaleData
-])
+import en from './i18n/en.js';
+import zh from './i18n/zh.js';
+import ja from './i18n/ja.js';
+
+addLocaleData([...zhLocaleData, ...enLocaleData, ...jaLocaleData]);
 
 const Root = () => {
-  const locale = navigator.language;
+  const [locale, setLocale] = useState(navigator.language);
+  let messages;
+
+  if (locale.includes('zh')) {
+    messages = zh;
+  } else if (locale.includes('ja')) {
+    messages = ja;
+  } else {
+    messages = en;
+  }
 
   return (
-    <IntlProvider locale={locale} key={locale} defaultLocale="en">
-      <App />
+    <IntlProvider
+      locale={locale}
+      key={locale}
+      defaultLocale="en"
+      messages={messages}
+    >
+      <App setLocale={setLocale} />
     </IntlProvider>
   );
 };
