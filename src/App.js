@@ -1,7 +1,12 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { FormattedMessage } from 'react-intl';
+import {
+  FormattedMessage,
+  FormattedDate,
+  FormattedTime,
+  FormattedRelative,
+} from 'react-intl';
 
 function App({ setLocale }) {
   return (
@@ -13,7 +18,7 @@ function App({ setLocale }) {
         </p>
         <div>
           <button onClick={() => setLocale('en')}>英文</button>
-          <button onClick={() => setLocale('zh')}>中文</button>
+          <button onClick={() => setLocale('zh-Hant')}>中文</button>
           <button onClick={() => setLocale('ja')}>日文</button>
         </div>
         <a
@@ -24,6 +29,16 @@ function App({ setLocale }) {
         >
           <FormattedMessage id="app.learn" values={{ name: 'React' }} />
         </a>
+        <br />
+        <FormattedDate
+          value={new Date()}
+          year="numeric"
+          month="long"
+          day="numeric"
+          weekday="long"
+        />
+        <FormattedTime value={new Date()} />
+        <FormattedRelative value={new Date().getTime() - 60 * 1000 * 5}/>
       </header>
     </div>
   );
