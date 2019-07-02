@@ -5,7 +5,7 @@ import {
   FormattedMessage,
   FormattedDate,
   FormattedTime,
-  FormattedRelative,
+  FormattedRelativeTime,
 } from 'react-intl';
 
 function App({ setLocale }) {
@@ -38,7 +38,8 @@ function App({ setLocale }) {
           weekday="long"
         />
         <FormattedTime value={new Date()} />
-        <FormattedRelative value={new Date().getTime() - 60 * 1000 * 5}/>
+        <br />
+        <FormattedRelativeTime value={5}/>
       </header>
     </div>
   );

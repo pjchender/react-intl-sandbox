@@ -3,17 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { IntlProvider, addLocaleData } from 'react-intl';
-
-import enLocaleData from 'react-intl/locale-data/en.js';
-import zhLocaleData from 'react-intl/locale-data/zh.js';
-import jaLocaleData from 'react-intl/locale-data/ja.js';
+import { IntlProvider } from 'react-intl';
 
 import en from './i18n/en.js';
 import zh from './i18n/zh.js';
 import ja from './i18n/ja.js';
-
-addLocaleData([...zhLocaleData, ...enLocaleData, ...jaLocaleData]);
 
 const Root = () => {
   const [locale, setLocale] = useState(navigator.language);
